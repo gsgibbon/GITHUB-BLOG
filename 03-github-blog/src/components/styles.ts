@@ -9,6 +9,29 @@ export const HeaderContainer = styled.header`
   align-items: center;
   
   background-color: ${props => props.theme["base-profile"]};
+  opacity: 0.6;
+
+  box-shadow: inset 0px -140px 160px 0px rgba(20, 88, 156, 0.4);
+
+  figure {
+    display: flex;
+    gap: 1.25rem;
+    flex-direction: column;
+    align-items: center;
+    
+    img {
+      width: 2.8125rem;
+      height: 2.1875rem;
+    }
+
+    figcaption {
+      font-size: 24px;
+      color: ${props => props.theme.blue};
+      line-height: 160%;
+    }
+  }
+  
+  
 `
 
 export const RowsOne = styled.img`
