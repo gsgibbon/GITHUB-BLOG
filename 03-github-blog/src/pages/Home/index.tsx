@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HomeContainer } from "./styles";
+import { HomeContainer, ProfileContainer } from "./styles";
 import { useState, useEffect } from "react";
 
 interface TypesProfile {
@@ -31,7 +31,7 @@ export function Home() {
   return(
     <HomeContainer>
       {profile && 
-        <div>
+        <ProfileContainer>
           <img src={profile.avatar} alt="" />
           <div>
             <h1>{profile.name}</h1>
@@ -45,7 +45,7 @@ export function Home() {
               <a href="#">{profile.followers}</a>
             </nav>
           </div>
-        </div>
+        </ProfileContainer>
       }
 
       <div>
