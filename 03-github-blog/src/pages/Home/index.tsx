@@ -1,6 +1,8 @@
+import { HomeContainer } from "./styles";
+
 export function Home() {
   return(
-    <main>
+    <HomeContainer>
       <div>
         <img src="" alt="" />
         <div>
@@ -31,6 +33,6 @@ export function Home() {
         <div>5</div>  
         <div>6</div>  
       </div>   
-    </main>
+    </HomeContainer>
   )
 }
