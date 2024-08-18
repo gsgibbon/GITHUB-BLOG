@@ -5,7 +5,8 @@ export function Home() {
         <img src="" alt="" />
         <div>
           <h1>Guilherme Gibbon</h1>
-          <p>Tristique volutpat pulvinar vel massa, 
+          <p>
+            Tristique volutpat pulvinar vel massa, 
             pellentesque egestas. Eu viverra massa quam dignissim
             aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.
           </p>
