@@ -1,7 +1,10 @@
+import logo from "../assets/Logologo-githubBlog.svg"
+import { HeaderContainer } from "./styles"
+
 export function Header () {
   return (
-    <header>
-      
-    </header>
+    <HeaderContainer>
+      <img src={logo} alt="" />
+    </HeaderContainer>
   )
 }
