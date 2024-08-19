@@ -34,7 +34,7 @@ export function Home() {
         <ProfileContainer>
           <img src={profile.avatar} alt="" />
           <div>
-            <h1>{profile.name}</h1>
+            <h2>{profile.name}</h2>
             <p>
               Tristique volutpat pulvinar vel massa, 
               pellentesque egestas. Eu viverra massa quam dignissim
@@ -49,7 +49,7 @@ export function Home() {
       }
 
       <div>
-        <h3>Publicações</h3>  
+        <h4>Publicações</h4>  
         <input type="text" placeholder="Buscar conteúdo"/>
       </div>
 

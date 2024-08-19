@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   background-color: ${props => props.theme["base-profile"]};
   opacity: 0.6;
 
-  box-shadow: inset 0px -140px 160px 0px rgba(20, 88, 156, 0.4);
+  box-shadow: inset 0px -130px 160px 0px rgba(20, 88, 156, 0.4);
 
   figure {
     display: flex;
@@ -25,7 +25,9 @@ export const HeaderContainer = styled.header`
     }
 
     figcaption {
+      font-family: "Coda", system-ui;
       font-size: 24px;
+      text-shadow: 1px 1px 1px #000;
       color: ${props => props.theme.blue};
       line-height: 160%;
     }

@@ -12,6 +12,20 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
+    font-family: "Nunito Sans", sans-serif;
     background-color: ${props => props.theme["base-background"]};
+  }
+
+  h1,h2,h3 {
+    color: ${props => props.theme["base-title"]}
+  }
+
+  h4 {
+    
+    color: ${props => props.theme["base-subtitle"]}
+  }
+
+  p {
+    color: ${props => props.theme["base-text"]}
   }
 `
