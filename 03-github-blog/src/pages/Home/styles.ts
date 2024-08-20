@@ -56,7 +56,7 @@ export const ProfileContainer = styled.div`
   }
 `
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   width: 54rem;
   display: flex;
   flex-direction: column;

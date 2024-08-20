@@ -8,8 +8,18 @@ interface TypesProfile {
   avatar: string
   followers: string
 }
+
+interface TypesPosts {
+  number: number
+  title: string
+  body: string
+}
+
 export function Home() {
   const [profile, setProfile] = useState<TypesProfile>()
+  const [posts, setPosts] = useState<TypesPosts[]>([]);
+
+  const [searchPost, setSearchPost] = useState<string>("");
 
   async function getProfile () {
     const response = await axios.get("https://api.github.com/users/gsgibbon")
@@ -24,9 +34,27 @@ export function Home() {
     })
   }
 
+  async function getIssues() {
+   const response = await axios.get(`https://api.github.com/search/issues?q=repo:gsgibbon/Github-Blog`)
+
+   const dataPost = response.data
+
+   setPosts(dataPost.items)
+   console.log(posts)
+  }
+
   useEffect(() => {
     getProfile()
+    getIssues()
   }, [])
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+   const responde = await axios.get(`https://api.github.com/search/issues?q=${searchPost}`)
+
+   console.log(responde.data)
+  }
 
   return(
     <HomeContainer>
@@ -52,22 +80,30 @@ export function Home() {
         </ProfileContainer>
       }
 
-      <SearchContainer>
+      <SearchContainer onSubmit={handleSubmit}>
         <div>
           <h4>Publicações</h4>  
           <span>0 publicações</span>
         </div>
-        <input type="text" placeholder="Buscar conteúdo"/>
+        <input 
+          type="text" 
+          placeholder="Buscar conteúdo" 
+          onChange={(e) => setSearchPost(e.target.value)}
+          value={searchPost}
+        />
       </SearchContainer>
-
+  
       <PostsContainer>
-        <div>1</div>  
-        <div>2</div>  
-        <div>3</div>  
-        <div>4</div>  
-        <div>5</div>  
-        <div>6</div>  
-      </PostsContainer>   
+        {posts.length >= 0 &&   
+          posts.map((post) => (
+            <div key={post.number}>
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </div>
+          ))
+        }
+      </PostsContainer> 
+  
     </HomeContainer>
   )
 }
