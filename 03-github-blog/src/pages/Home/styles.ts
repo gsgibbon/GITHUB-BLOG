@@ -111,8 +111,9 @@ export const PostsContainer = styled.div`
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(2, 26rem);
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
+  gap: 2rem;
 `;
 
 export const Post = styled.div`
