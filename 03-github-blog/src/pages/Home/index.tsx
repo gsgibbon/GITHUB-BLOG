@@ -1,6 +1,19 @@
 import axios from "axios";
-import { HomeContainer, LinkGithub, Post, PostsContainer, ProfileContainer, SearchContainer } from "./styles";
+
 import { useState, useEffect } from "react";
+import { 
+  HomeContainer, 
+  LinkGithub, 
+  Post,
+  PostsContainer, 
+  ProfileContainer, 
+  SearchContainer 
+} from "./styles";
+
+// format date
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 
 interface TypesProfile {
   name: string
@@ -15,8 +28,6 @@ interface TypesPosts {
   body: string
   updated_at: string
 }
-
-
 
 export function Home() {
   const [profile, setProfile] = useState<TypesProfile>()
@@ -43,6 +54,7 @@ export function Home() {
    const dataPost = response.data
 
    setPosts(dataPost.items)
+
    console.log(posts)
   }
 
@@ -57,6 +69,13 @@ export function Home() {
    const responde = await axios.get(`https://api.github.com/search/issues?q=${searchPost}`)
 
    console.log(responde.data)
+  }
+
+  function formatDate(date: string) {
+    return formatDistanceToNow(date, {
+      addSuffix: true,
+      locale: ptBR
+    })
   }
 
   return(
@@ -97,12 +116,12 @@ export function Home() {
       </SearchContainer>
   
       <PostsContainer>
-        {posts.length >= 0 &&   
+        {posts.length > 0 &&   
           posts.map((post) => (
             <Post key={post.number}>
               <div>
                 <h3>{post.title}</h3>
-               
+                <span>{formatDate(post.updated_at)}</span>
               </div>
               <p>{post.body}</p>
             </Post>
