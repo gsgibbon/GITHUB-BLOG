@@ -62,6 +62,8 @@ export const SearchContainer = styled.form`
   flex-direction: column;
   gap: 0.5rem;
 
+  margin: 4rem 0 2rem 0;
+
   div {
     display: flex;
     justify-content: space-between;
@@ -105,5 +107,28 @@ export const LinkGithub = styled.a`
 `
 
 export const PostsContainer = styled.div`
-  color: #fff
+  width: 54rem;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 26rem);
+  justify-content: space-between;
+`;
+
+export const Post = styled.div`
+  height: 16.25rem;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  background-color: ${props => props.theme["base-post"]};
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    color: ${props => props.theme["base-span"]};
+  }
 `;

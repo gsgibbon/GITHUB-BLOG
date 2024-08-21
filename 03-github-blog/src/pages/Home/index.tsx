@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HomeContainer, LinkGithub, PostsContainer, ProfileContainer, SearchContainer } from "./styles";
+import { HomeContainer, LinkGithub, Post, PostsContainer, ProfileContainer, SearchContainer } from "./styles";
 import { useState, useEffect } from "react";
 
 interface TypesProfile {
@@ -13,7 +13,10 @@ interface TypesPosts {
   number: number
   title: string
   body: string
+  updated_at: string
 }
+
+
 
 export function Home() {
   const [profile, setProfile] = useState<TypesProfile>()
@@ -96,10 +99,13 @@ export function Home() {
       <PostsContainer>
         {posts.length >= 0 &&   
           posts.map((post) => (
-            <div key={post.number}>
-              <h3>{post.title}</h3>
+            <Post key={post.number}>
+              <div>
+                <h3>{post.title}</h3>
+               
+              </div>
               <p>{post.body}</p>
-            </div>
+            </Post>
           ))
         }
       </PostsContainer> 
