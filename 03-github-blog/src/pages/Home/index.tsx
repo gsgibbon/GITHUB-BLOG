@@ -14,6 +14,8 @@ import {
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
+import { useNavigate } from "react-router-dom";
+
 
 interface TypesProfile {
   name: string
@@ -34,6 +36,8 @@ export function Home() {
   const [posts, setPosts] = useState<TypesPosts[]>([]);
 
   const [searchPost, setSearchPost] = useState<string>("");
+
+  const navigate = useNavigate();
 
   async function getProfile () {
     const response = await axios.get("https://api.github.com/users/gsgibbon")
@@ -78,6 +82,11 @@ export function Home() {
     })
   }
 
+  function handlePostClick(postNumber: number) {
+    navigate(`/post/${postNumber}`)
+  }
+  
+
   return(
     <HomeContainer>
       {profile && 
@@ -118,7 +127,7 @@ export function Home() {
       <PostsContainer>
         {posts.length > 0 &&   
           posts.map((post) => (
-            <Post key={post.number}>
+            <Post key={post.number} onClick={() => handlePostClick(post.number)}>
               <div>
                 <h3>{post.title}</h3>
                 <span>{formatDate(post.updated_at)}</span>
