@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
+`
+export const HeaderPost = styled.div`
   width: 54rem;
   height: 13.25rem;
   border-radius: 10px;

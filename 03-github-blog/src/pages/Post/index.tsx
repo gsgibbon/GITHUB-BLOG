@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
-import { PostContainer } from "./styles";
+import { Link, useParams } from "react-router-dom"
+import { HeaderPost, PostContainer } from "./styles";
 
 interface typesPost {
   title: string
   body: string
   updated_at: string
-  login: string
+  user: {
+    login: string
+  }
+  comments: number
 }
 
 export function Post () {
@@ -28,7 +31,21 @@ export function Post () {
 
   return(
     <PostContainer>
-      
+      <HeaderPost> 
+        <nav>
+          <Link to={"/"}>voltar</Link>
+          <Link to={"/"}>ver no github</Link>
+        </nav>
+        <h2>{post?.title}</h2>
+        <ul>
+          <li>{post?.user.login}</li>
+          <li>{post?.updated_at}</li>
+          <li>{post?.comments}</li>
+        </ul>
+      </HeaderPost>
+      <div>
+        <p>{post?.body}</p>
+      </div>
     </PostContainer>
   )
 }
