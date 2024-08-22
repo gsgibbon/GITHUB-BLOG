@@ -112,6 +112,10 @@ export const LinkGithub = styled.a`
   color: ${props => props.theme.blue};
   text-decoration: none;
   line-height: 160%;
+
+  &:hover {
+    border-bottom: 1px solid ${props => props.theme.blue};
+  }
 `
 
 export const PostsContainer = styled.div`
@@ -124,10 +128,6 @@ export const PostsContainer = styled.div`
   gap: 2rem;
 
   cursor: pointer;
-
-  :hover {
-    border: 1px solid ${props => props.theme["base-label"]}
-  }
 `;
 
 export const Post = styled.div`
@@ -140,6 +140,10 @@ export const Post = styled.div`
   gap: 1.25rem;
 
   background-color: ${props => props.theme["base-post"]};
+
+  &:hover {
+    border: 1px solid ${props => props.theme["base-label"]}
+  }
 
   div {
     display: flex;
