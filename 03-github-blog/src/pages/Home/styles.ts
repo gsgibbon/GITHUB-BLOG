@@ -92,6 +92,14 @@ export const SearchContainer = styled.form`
     &::placeholder {
       color: ${props => props.theme["base-label"]};
     }
+
+    &:focus {
+      border: 1px solid ${props => props.theme.blue};
+
+      &::placeholder {
+        color: ${props => props.theme["base-text"]};
+      }
+    }
   }
 `
 
@@ -114,6 +122,12 @@ export const PostsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   gap: 2rem;
+
+  cursor: pointer;
+
+  :hover {
+    border: 1px solid ${props => props.theme["base-label"]}
+  }
 `;
 
 export const Post = styled.div`
@@ -130,6 +144,5 @@ export const Post = styled.div`
   div {
     display: flex;
     justify-content: space-between;
-    color: ${props => props.theme["base-span"]};
   }
 `;

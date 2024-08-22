@@ -28,4 +28,8 @@ export const GlobalStyle = createGlobalStyle`
   p {
     color: ${props => props.theme["base-text"]}
   }
+
+  span {
+    color: ${props => props.theme["base-span"]};
+  }
 `
