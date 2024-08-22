@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import { PostContainer } from "./styles";
 
 interface typesPost {
   title: string
@@ -26,6 +27,8 @@ export function Post () {
   }, [id])
 
   return(
-    <h1>{post?.title}</h1>
+    <PostContainer>
+      
+    </PostContainer>
   )
 }
