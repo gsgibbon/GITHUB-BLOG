@@ -121,7 +121,7 @@ export function Home() {
       <SearchContainer >
         <div>
           <h4>Publicações</h4>  
-          <span>0 publicações</span>
+          <span>{posts.length} publicações</span>
         </div>
         <form onSubmit={handleSubmit(handleSeachPost)}>
           <input 
