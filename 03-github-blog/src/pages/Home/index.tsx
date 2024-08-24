@@ -16,6 +16,7 @@ import { ptBR } from "date-fns/locale";
 
 import { useNavigate } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
 
 interface TypesProfile {
   name: string
@@ -31,15 +32,23 @@ interface TypesPosts {
   updated_at: string
 }
 
+interface SeachPostData {
+  searchPost: string
+}
 export function Home() {
   const [profile, setProfile] = useState<TypesProfile>()
   const [posts, setPosts] = useState<TypesPosts[]>([]);
 
-  const [searchPost, setSearchPost] = useState<string>("");
+  // const [searchPost, setSearchPost] = useState<string>("");
 
   const navigate = useNavigate();
 
-  async function getProfile () {
+  const {
+    register,
+    handleSubmit,
+  } = useForm<SeachPostData>();
+
+  async function getProfile() {
     const response = await axios.get("https://api.github.com/users/gsgibbon")
 
     const data = response.data;
@@ -58,8 +67,6 @@ export function Home() {
    const dataPost = response.data
 
    setPosts(dataPost.items)
-
-   console.log(posts)
   }
 
   useEffect(() => {
@@ -67,14 +74,7 @@ export function Home() {
     getIssues()
   }, [])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-   const responde = await axios.get(`https://api.github.com/search/issues?q=${searchPost}`)
-
-   console.log(responde.data)
-  }
-
+// format Date
   function formatDate(date: string) {
     return formatDistanceToNow(date, {
       addSuffix: true,
@@ -85,8 +85,15 @@ export function Home() {
   function handlePostClick(postNumber: number) {
     navigate(`/post/${postNumber}`)
   }
-  
 
+  async function handleSeachPost(data: SeachPostData) {
+    const response = await axios.get(
+      `https://api.github.com/search/issues?q=${data.searchPost} repo:gsgibbon/Github-blog`
+    )
+    const dataPost = response.data
+    
+    setPosts(dataPost.items)
+  }
   return(
     <HomeContainer>
       {profile && 
@@ -95,7 +102,7 @@ export function Home() {
           <div>
             <h2>{profile.name}</h2>
             
-            <LinkGithub href="#">GITHUB</LinkGithub>
+            <LinkGithub href="https://github.com/gsgibbon">GITHUB</LinkGithub>
             
             <p>
               Tristique volutpat pulvinar vel massa, 
@@ -103,25 +110,26 @@ export function Home() {
               aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.
             </p>
 
-            <nav>
-              <a href="#">{profile.login}</a>
-              <a href="#">{profile.followers} seguidores</a>
-            </nav>
+            <ul>
+              <li>{profile.login}</li>
+              <li>{profile.followers} seguidores</li>
+            </ul>
           </div>
         </ProfileContainer>
       }
 
-      <SearchContainer onSubmit={handleSubmit}>
+      <SearchContainer >
         <div>
           <h4>Publicações</h4>  
           <span>0 publicações</span>
         </div>
-        <input 
-          type="text" 
-          placeholder="Buscar conteúdo" 
-          onChange={(e) => setSearchPost(e.target.value)}
-          value={searchPost}
-        />
+        <form onSubmit={handleSubmit(handleSeachPost)}>
+          <input 
+            type="text" 
+            placeholder="Buscar conteúdo"
+            {...register("searchPost")} 
+          />
+        </form>
       </SearchContainer>
   
       <PostsContainer>

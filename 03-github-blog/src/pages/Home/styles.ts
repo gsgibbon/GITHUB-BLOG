@@ -43,20 +43,20 @@ export const ProfileContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
-    nav {
+    ul {
       display: flex;
       gap: 1.25rem;
 
-      a {
+      li {
         line-height: 160%;
-        text-decoration: none;
+        list-style: none;
         color: ${props => props.theme["base-subtitle"]};
       }
     }
   }
 `
 
-export const SearchContainer = styled.form`
+export const SearchContainer = styled.div`
   width: 54rem;
   display: flex;
   flex-direction: column;
