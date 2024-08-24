@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { formatDistanceToNow } from "date-fns";
 import { HeaderPost, PostContainer } from "./styles";
 import { ptBR } from "date-fns/locale";
+import { apiURL } from "../../lib/axios";
 
 interface typesPost {
   title: string
@@ -28,7 +28,7 @@ export function Post() {
 
   useEffect(() => {
     async function getPost() {
-      const response = await axios.get(`https://api.github.com/repos/gsgibbon/Github-Blog/issues/${id}`)
+      const response = await apiURL.get(`/repos/gsgibbon/Github-Blog/issues/${id}`)
 
       const dataPost = response.data;
 

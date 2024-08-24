@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { useState, useEffect } from "react";
 import { 
   HomeContainer, 
@@ -17,6 +15,7 @@ import { ptBR } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
+import { apiURL } from "../../lib/axios";
 
 interface TypesProfile {
   name: string
@@ -46,10 +45,11 @@ export function Home() {
   const {
     register,
     handleSubmit,
+    reset,
   } = useForm<SeachPostData>();
 
   async function getProfile() {
-    const response = await axios.get("https://api.github.com/users/gsgibbon")
+    const response = await apiURL.get("/users/gsgibbon")
 
     const data = response.data;
 
@@ -62,7 +62,7 @@ export function Home() {
   }
 
   async function getIssues() {
-   const response = await axios.get(`https://api.github.com/search/issues?q=repo:gsgibbon/Github-Blog`)
+   const response = await apiURL.get(`/search/issues?q=repo:gsgibbon/Github-Blog`)
 
    const dataPost = response.data
 
@@ -87,12 +87,13 @@ export function Home() {
   }
 
   async function handleSeachPost(data: SeachPostData) {
-    const response = await axios.get(
-      `https://api.github.com/search/issues?q=${data.searchPost} repo:gsgibbon/Github-blog`
+    const response = await apiURL.get(
+      `/search/issues?q=${data.searchPost} repo:gsgibbon/Github-blog`
     )
     const dataPost = response.data
     
     setPosts(dataPost.items)
+    reset({searchPost: ""})
   }
   return(
     <HomeContainer>
